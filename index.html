@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bench · Oturmadan önce bak.</title>
-<meta name="description" content="Şehrin en iyi banklarını fotoğrafla, puanla, haritada paylaş. Bench yakında App Store ve Google Play'de. Bekleme listesine katıl.">
+<meta name="description" content="Şehrin en iyi banklarını keşfet, puanla, favorilerine kaydet. Bench'in iPhone betası yayında: TestFlight ile hemen dene. Android yakında.">
 <meta property="og:title" content="Bench · Oturmadan önce bak.">
-<meta property="og:description" content="Şehrin en iyi banklarını fotoğrafla, puanla, haritada paylaş. Bekleme listesine katıl.">
+<meta property="og:description" content="Bench'in iPhone betası yayında. Şehrin en iyi banklarını keşfet, puanla ve paylaş.">
 <meta property="og:image" content="https://hanceromer.github.io/bench/img/og.jpg">
 <meta property="og:url" content="https://hanceromer.github.io/bench/">
 <meta name="twitter:card" content="summary_large_image">
@@ -74,6 +74,22 @@
   form.sent .fields { display:none; }
   form.sent .done { display:block; }
   details { margin-top:12px; font-size:12px; color:var(--muted); }
+
+  /* try it now (TestFlight) */
+  .try { margin-top:30px; background:var(--panel); border:1px solid var(--red); padding:22px; max-width:520px; }
+  .try .label { font-size:11px; color:var(--muted); margin-bottom:14px; display:flex; justify-content:space-between; }
+  .try .label b { color:var(--red); }
+  .install { display:block; text-align:center; background:var(--red); color:#fff; text-decoration:none; font-family:'Bebas Neue', sans-serif; font-size:32px; letter-spacing:.06em; padding:14px 18px 10px; transition:background .15s; }
+  .install:hover { background:var(--red-hi); }
+  .try .hint { margin-top:12px; font-size:13px; color:#bdbdb8; }
+  .try .hint a { color:var(--text); }
+  .try p { color:#cfcfcb; }
+  .qr { display:flex; gap:18px; align-items:center; }
+  .qr img { background:#fff; padding:6px; flex:none; }
+  .only-ios, .only-android, .only-desktop { display:none; }
+  .is-ios .only-ios, .is-android .only-android, .is-desktop .only-desktop { display:block; }
+  .is-desktop .only-desktop.qr { display:flex; }
+  .is-ios form, .is-desktop form { margin-top:18px; }
   details summary { cursor:pointer; }
   details p { margin-top:8px; }
 
@@ -140,20 +156,36 @@
 <header>
   <div class="wrap">
     <a class="brand" href="#"><img src="img/logo.png" alt="">Bench</a>
-    <span class="badge mono">Gizli dosya <b>●</b> Yakında</span>
+    <span class="badge mono">iPhone beta <b>●</b> Yayında</span>
   </div>
 </header>
 
 <div class="hero">
   <div class="wrap">
     <div>
-      <div class="kicker mono">Yakında <b>·</b> App Store <b>·</b> Google Play</div>
+      <div class="kicker mono">iPhone beta yayında <b>·</b> Android yakında</div>
       <h1>Oturmadan önce <em>bak.</em></h1>
-      <p class="lead">Şehrin en iyi banklarını fotoğrafla, manzarasını, temizliğini ve rahatlığını puanla, en güzel saatini haritada paylaş.</p>
+      <p class="lead">Yakınındaki en iyi bankları keşfet, manzarasını, temizliğini ve rahatlığını puanla, favorilerine kaydet, kendi önerini paylaş.</p>
+
+      <div class="try" id="dene">
+        <div class="label mono"><span>Bench'i iPhone'da dene</span><b>● Beta</b></div>
+        <div class="only-ios">
+          <a class="install" href="https://testflight.apple.com/join/AE6JW7Ns">Bench'i yükle</a>
+          <p class="hint">Bench şu an Apple'ın ücretsiz <b>TestFlight</b> uygulamasıyla dağıtılıyor. TestFlight yüklü değilse davet sayfası önce onu yüklemeni ister, sonra bu butona tekrar dokun. <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight'ı indir</a></p>
+        </div>
+        <div class="only-desktop qr">
+          <img src="img/testflight-qr.png" alt="Bench TestFlight davet QR kodu" width="132" height="132">
+          <div><p><b>iPhone'unun kamerasıyla okut</b>, davet açılsın.</p>
+            <p class="hint">Ya da linki telefonunda aç: <a href="https://testflight.apple.com/join/AE6JW7Ns">testflight.apple.com/join/AE6JW7Ns</a></p></div>
+        </div>
+        <div class="only-android">
+          <p><b>Bench şimdilik sadece iPhone'da.</b> Android sürümü yakında; aşağıya e-postanı bırak, çıktığı gün haber verelim.</p>
+        </div>
+      </div>
 
       <form id="waitlist" novalidate>
         <div class="fields">
-          <div class="label mono"><span>Bekleme listesi</span><b>●</b></div>
+          <div class="label mono"><span class="wl-title">Android'desin? Çıkınca haber verelim</span><b>●</b></div>
           <input type="email" name="email" placeholder="E-posta adresin" autocomplete="email" required>
           <select name="city" class="city" aria-label="Şehir">
             <option value="">Hangi şehirdesin? (isteğe bağlı)</option>
@@ -173,7 +205,7 @@
         </div>
         <div class="done">
           <div class="stamp">LİSTEDESİN ✓</div>
-          <p>Bench çıktığında ilk haber alanlardan biri olacaksın. Bu arada bir arkadaşını da ekle; en iyi bankı birlikte bulun.</p>
+          <p>Android sürümü çıktığında ilk haber alanlardan biri olacaksın. iPhone kullanan bir arkadaşın varsa linki ona da gönder; en iyi bankı birlikte bulun.</p>
           <div class="share">
             <button type="button" id="share">Linki paylaş</button>
           </div>
@@ -226,8 +258,8 @@
 <section class="cta-band">
   <div class="wrap">
     <h2>Sıradaki dosya senin şehrin olsun.</h2>
-    <a class="btn" href="#waitlist">Listeye katıl</a>
-    <div class="stores mono">Yakında App Store ve Google Play'de</div>
+    <a class="btn" href="#dene">Bench'i dene</a>
+    <div class="stores mono">iPhone'da beta · Android yakında</div>
   </div>
 </section>
 
@@ -244,6 +276,12 @@
   const SUPABASE_KEY = 'sb_publishable_kQ2rALI0_kDKoY6dmUIM9Q_mauGd3ho';          // publishable (public) key, safe in the browser
   const CONTACT_EMAIL = 'benchhapp@gmail.com';                       // KVKK başvuruları için iletişim e-postası
   const SOCIAL = { Instagram: 'https://www.instagram.com/benchh.app/', TikTok: '', X: '' }; // profil linkleri; boş olanlar gösterilmez
+
+  // which install path to show: iPhone/iPad → TestFlight button, Android → waitlist, computer → QR code
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  document.body.classList.add(isIOS ? 'is-ios' : /Android/i.test(ua) ? 'is-android' : 'is-desktop');
+  if (!/Android/i.test(ua)) document.querySelector('.wl-title').textContent = 'Android sürümü ve yenilikler için haber al';
 
   document.getElementById('y').textContent = new Date().getFullYear();
   document.getElementById('social').innerHTML = Object.entries(SOCIAL)
@@ -284,7 +322,7 @@
 
   document.getElementById('share').addEventListener('click', async () => {
     const url = location.origin + location.pathname;
-    const data = { title: 'Bench', text: 'Şehrin en iyi banklarını puanlayan uygulama yakında. Bekleme listesine katıl:', url };
+    const data = { title: 'Bench', text: "Şehrin en iyi banklarını puanlayan Bench'in iPhone betası yayında, sen de dene:", url };
     try {
       if (navigator.share) await navigator.share(data);
       else { await navigator.clipboard.writeText(url); document.getElementById('share').textContent = 'Link kopyalandı ✓'; }
